@@ -1,0 +1,79 @@
+import Image from "next/image";
+
+// sections
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
+import Edu from "./components/Edu";
+import Certs from "./components/certs";
+import StatsRail from "./components/StatsRail";
+import React from "react";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen">
+      {/* HERO */}
+      <section
+        id="home"
+        className="container mx-auto px-4 py-16 flex flex-col items-center text-center scroll-mt-24"
+      >
+        {/* Headshot */}
+        <div className="mb-6 rounded-full p-1 md:p-1.5 lg:p-2 bg-gradient-to-br from-indigo-200 via-fuchsia-200 to-pink-200">
+          <div className="relative h-40 w-40 md:h-52 md:w-52 lg:h-56 lg:w-56 rounded-full overflow-hidden bg-white shadow-xl ring-1 ring-black/5">
+            <Image
+              src="/images/pawan-headshot.png"
+              alt="Pawan Kumari headshot"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+
+       {/* Right-side stats — shown ONLY within the Home section */}
+        <StatsRail
+          years={3}
+          projects={5}
+          className="absolute right-6 top-1/2 -translate-y-1/2 z-30"
+        />
+
+        {/* Name */}
+        <h1 className="text-4xl font-semibold tracking-tight">SOFTWARE DEVELOPER</h1>
+
+        {/* Role + Tech pills */}
+        <div className="mt-3 flex flex-wrap gap-2 justify-center">
+          <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-sm">Python</span>
+          <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-sm">C#</span>
+          <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-sm">JavaScript</span>
+        </div>
+
+        {/* Slogan */}
+        <p className="mt-4 text-lg max-w-2xl">
+          <span className="font-medium">Building</span>{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 font-semibold">
+            clean, responsive web apps
+          </span>.
+        </p>
+
+        {/* Intro in glass card */}
+        <div className="mt-6 max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-5 text-left shadow-sm">
+          <p className="text-gray-200 leading-relaxed">
+            Currently volunteering remotely as a Web Developer at UNIMAC Cameroon.
+            Experienced across frontend and backend, I have 3+ years’ experience as a Junior Software Developer building
+            web-based applications and tools with Python, C#, and JavaScript.
+          </p>
+        </div>
+      </section>
+
+
+
+
+      {/* SECTIONS */}
+      <Projects />
+      <Skills />
+      <Experience />
+      <Edu />
+      <Certs />
+    </main>
+  );
+}
