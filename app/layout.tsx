@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" >
       {/* If you want pure black background, switch text to a light color */}
-      <body className={`${inter.className} bg-black text-gray-100 antialiased`}>
+      <body className={`${inter.className} bg-black text-gray-100 antialiased overflow-x-hidden`}>
         <Starfield density={1200} maxR={1.6} speed={0.07} />
         <Header />
         {children}
