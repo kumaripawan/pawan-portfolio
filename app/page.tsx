@@ -55,11 +55,7 @@ export default function Home() {
           </span>.
         </p>
 
-        {/* Intro in glass card */}
-        <div className="mt-6 max-w-3xl mx-auto rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-5 text-left shadow-sm">
-          <p className="text-gray-200 leading-relaxed">
-          </p>
-        </div>
+
       </section>
 
 
