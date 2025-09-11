@@ -15,7 +15,7 @@ export default function Home() {
       {/* HERO */}
       <section
         id="home"
-        className="container mx-auto px-4 py-16 flex flex-col items-center text-center scroll-mt-24"
+        className="container mx-auto px-4 py-12 flex flex-col items-center text-center scroll-mt-24"
       >
         {/* Headshot */}
         <div className="mb-6 rounded-full p-1 md:p-1.5 lg:p-2 bg-gradient-to-br from-indigo-200 via-fuchsia-200 to-pink-200">
