@@ -1,6 +1,5 @@
-'use client';
-
-import { useEffect, useMemo, useRef, useState } from 'react';
+"use client";
+import { useMemo, useRef, useState, useEffect } from "react";
 
 type Props = {
   years?: number;
@@ -8,55 +7,9 @@ type Props = {
   className?: string;
 };
 
-function usePrefersReducedMotion() {
-  const [prefers, setPrefers] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setPrefers(mq.matches);
-    update();
-    mq.addEventListener('change', update);
-    return () => mq.removeEventListener('change', update);
-  }, []);
-  return prefers;
-}
-
-function useCountUp(active: boolean, target: number, durationMs = 1200) {
-  const prefersReduced = usePrefersReducedMotion();
-  const [value, setValue] = useState(0);
-  const rafRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (!active) return;
-    if (prefersReduced) {
-      setValue(target);
-      return;
-    }
-    let start: number | null = null;
-    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    const step = (t: number) => {
-      if (start === null) start = t;
-      const p = Math.min((t - start) / durationMs, 1);
-      setValue(Math.round(target * easeOutCubic(p)));
-      if (p < 1) rafRef.current = requestAnimationFrame(step);
-    };
-
-    rafRef.current = requestAnimationFrame(step);
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [active, target, durationMs, prefersReduced]);
-
-  return value;
-}
-
-export default function StatsRail({
-  years = 3,
-  projects = 5,
-  className = '',
-}: Props) {
+export default function StatsRail({ years = 3, projects = 5, className = "" }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const [, setVisible] = useState(false);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -71,15 +24,12 @@ export default function StatsRail({
     return () => io.disconnect();
   }, []);
 
-  const y = useCountUp(visible, years, 1100);
-  const p = useCountUp(visible, projects, 1000);
-
   const Item = useMemo(
     () =>
       function Item({
         label,
         value,
-        suffix = '+',
+        suffix = "+",
       }: {
         label: string;
         value: number;
@@ -87,22 +37,15 @@ export default function StatsRail({
       }) {
         return (
           <div
-            className="
-              rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
-              px-4 py-3 text-right shadow-sm
-            "
+            className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm
+                       px-4 py-3 text-right shadow-sm"
             aria-label={label}
           >
-            <div
-              className="text-2xl sm:text-3xl font-extrabold leading-none text-emerald-400"
-              aria-live="polite"
-            >
-              {new Intl.NumberFormat().format(value)}
+            <div className="text-3xl font-extrabold leading-none text-emerald-400">
+              {value}
               {suffix}
             </div>
-            <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">
-              {label}
-            </div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">{label}</div>
           </div>
         );
       },
@@ -112,18 +55,22 @@ export default function StatsRail({
   return (
     <div
       ref={rootRef}
-      className={`
-        pointer-events-none hidden md:flex
-        fixed right-4 sm:right-6 xl:right-12
-        top-1/2 -translate-y-1/2
-        z-40 flex-col gap-4
-        ${className}
-      `}
-      role="complementary"
-      aria-label="Profile statistics"
+      className={`hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2
+                  z-40 flex-col gap-4 ${className}`}
     >
-      <Item label="Years of Experience" value={y} />
-      <Item label="Completed Projects" value={p} />
+      {/* Stats */}
+      <Item label="Years of Experience" value={years} />
+      <Item label="Completed Projects" value={projects} />
+
+      {/* Download CV button inside stats rail */}
+      <a
+        href="/Pawan_Kumari_CV.pdf"
+        download
+        className="mt-2 inline-block rounded-full bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600
+                   px-4 py-2 text-sm font-medium text-white shadow-md hover:opacity-90 transition text-center"
+      >
+        Download CV
+      </a>
     </div>
   );
 }
