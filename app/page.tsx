@@ -1,10 +1,14 @@
+ "use client";
  import Image from "next/image";
-  import Projects from "./components/Projects";
+ import Projects from "./components/Projects";
  import Skills from "./components/Skills";
  import Experience from "./components/Experience";
 import Edu from "./components/Edu";
 import Certs from "./components/certs";
  import StatsRail from "./components/StatsRail";
+ import { Typewriter } from "react-simple-typewriter";
+ import ChatBot from "./components/ChatBot";
+
   import React from "react";
  export default function Home() {
  return ( <main className="min-h-screen">
@@ -19,19 +23,22 @@ import Certs from "./components/certs";
     scroll-mt-24
   "
 >
-  {/* Left side: Bio */}
-<p
-  className="
-    mt-6 max-w-md text-sm sm:text-base md:text-lg
-    text-gray-300 leading-relaxed text-left
-  "
->
-  I’m a <span className="font-medium text-white">Software Developer</span> with a strong background in{" "}
-  <span className="font-semibold text-indigo-400">Python</span>,{" "}
-  <span className="font-semibold text-indigo-400">.NET/C#</span>, and{" "}
-  <span className="font-semibold text-indigo-400">JavaScript</span>.{" "}
-  I love turning ideas into responsive, scalable applications that make a real impact.
+<p className="text-base sm:text-lg md:text-xl text-gray-300 text-left leading-relaxed max-w-xl">
+  <Typewriter
+    words={[
+      "I’m a Software Developer with a strong background in Python, .NET/C#, and JavaScript.",
+      "I love turning ideas into responsive, scalable applications that make a real impact."
+    ]}
+    loop={false}
+    cursor
+    cursorStyle="|"
+    typeSpeed={50}
+    deleteSpeed={30}
+    delaySpeed={2000}
+  />
 </p>
+
+
 
   {/* Middle: Headshot + Role */}
   <div className="flex flex-col items-center text-center">
@@ -79,6 +86,7 @@ import Certs from "./components/certs";
 <Experience />
 <Edu />
 <Certs />
+ <ChatBot />
 </main>
  );
 }

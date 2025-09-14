@@ -10,6 +10,7 @@ type Props = {
 export default function StatsRail({ years = 3, projects = 5, className = "" }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [, setVisible] = useState(false);
+  const [visitors, setVisitors] = useState<number | null>(null);
 
   useEffect(() => {
     const el = rootRef.current;
@@ -23,6 +24,15 @@ export default function StatsRail({ years = 3, projects = 5, className = "" }: P
     io.observe(el);
     return () => io.disconnect();
   }, []);
+
+ // Visitor count (local simulation for now)
+useEffect(() => {
+  const count = localStorage.getItem("visitor-count");
+  const newCount = count ? parseInt(count) + 1 : 1;
+  localStorage.setItem("visitor-count", newCount.toString());
+  setVisitors(newCount);
+}, []);
+
 
   const Item = useMemo(
     () =>
@@ -58,6 +68,20 @@ export default function StatsRail({ years = 3, projects = 5, className = "" }: P
       className={`hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2
                   z-40 flex-col gap-4 ${className}`}
     >
+      {/* Visitors */}
+      <div
+        className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm
+                   px-4 py-3 text-right shadow-sm"
+        aria-label="Visitors"
+      >
+        <div className="text-3xl font-extrabold leading-none text-indigo-400">
+          {visitors !== null ? visitors : "..."}
+        </div>
+        <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">
+          Visitors
+        </div>
+      </div>
+
       {/* Stats */}
       <Item label="Years of Experience" value={years} />
       <Item label="Completed Projects" value={projects} />
