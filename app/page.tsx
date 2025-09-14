@@ -74,32 +74,33 @@ export default function Home() {
           </span>
         </div>
 
-        {/* Slogan */}
-        <p
-          className="
-            mt-4 text-sm sm:text-base md:text-lg lg:text-xl
-            max-w-md sm:max-w-xl md:max-w-2xl
-          "
-        >
-          <span className="font-medium">Building</span>{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 font-semibold">
-            clean, responsive web apps
-          </span>
-          .
-        </p>
+       {/* Slogan */}
+<p
+  className="
+    mt-4 text-sm sm:text-base md:text-lg lg:text-xl
+    max-w-md sm:max-w-xl md:max-w-2xl
+  "
+>
+  <span className="font-medium">Building</span>{" "}
+  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 font-semibold">
+    clean, responsive web apps
+  </span>
+  .
+</p>
 
-        {/* === Download CV button moved here === */}
-        <a
-          href="/Pawan_Kumari_CV.pdf"
-          download
-          className="
-            mt-6 inline-block rounded-full px-6 py-2
-            bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600
-            text-white font-medium shadow-md hover:opacity-90 transition
-          "
-        >
-          Download CV
-        </a>
+{/* Download CV button */}
+<div className="mt-6">
+  <a
+    href="/Pawan_Kumari_CV.pdf"
+    download
+    className="inline-block rounded-full bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600
+               px-6 py-2 text-sm font-medium text-white shadow-md
+               hover:opacity-90 transition"
+  >
+    Download CV
+  </a>
+</div>
+
       </section>
 
       {/* SECTIONS */}
