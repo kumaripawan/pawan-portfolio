@@ -33,12 +33,14 @@ function useCountUp(active: boolean, target: number, durationMs = 1200) {
     }
     let start: number | null = null;
     const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
     const step = (t: number) => {
       if (start === null) start = t;
       const p = Math.min((t - start) / durationMs, 1);
       setValue(Math.round(target * easeOutCubic(p)));
       if (p < 1) rafRef.current = requestAnimationFrame(step);
     };
+
     rafRef.current = requestAnimationFrame(step);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -48,7 +50,11 @@ function useCountUp(active: boolean, target: number, durationMs = 1200) {
   return value;
 }
 
-export default function StatsRail({ years = 3, projects = 5, className = '' }: Props) {
+export default function StatsRail({
+  years = 3,
+  projects = 5,
+  className = '',
+}: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
@@ -81,15 +87,22 @@ export default function StatsRail({ years = 3, projects = 5, className = '' }: P
       }) {
         return (
           <div
-            className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
-                       px-4 py-3 text-right shadow-sm"
+            className="
+              rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
+              px-4 py-3 text-right shadow-sm
+            "
             aria-label={label}
           >
-            <div className="text-3xl font-extrabold leading-none text-emerald-400" aria-live="polite">
-              {value}
+            <div
+              className="text-2xl sm:text-3xl font-extrabold leading-none text-emerald-400"
+              aria-live="polite"
+            >
+              {new Intl.NumberFormat().format(value)}
               {suffix}
             </div>
-            <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">{label}</div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">
+              {label}
+            </div>
           </div>
         );
       },
@@ -99,8 +112,13 @@ export default function StatsRail({ years = 3, projects = 5, className = '' }: P
   return (
     <div
       ref={rootRef}
-      className={`pointer-events-none hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2
-                  z-40 flex-col gap-4 ${className}`}
+      className={`
+        pointer-events-none hidden md:flex
+        fixed right-4 sm:right-6 xl:right-12
+        top-1/2 -translate-y-1/2
+        z-40 flex-col gap-4
+        ${className}
+      `}
       role="complementary"
       aria-label="Profile statistics"
     >

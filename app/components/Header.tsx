@@ -50,7 +50,7 @@ const handleHome = useCallback(() => {
 
         {/* Desktop links */}
 
-        <div className="hidden sm:flex items-center gap-3">
+        <div className="hidden sm:flex flex-wrap items-center gap-3 justify-center">
           <PillWrap>
             <a href="/Pawan_Kumari_CV.pdf" download className={`${pillInner} font-medium`}>
               Download CV
