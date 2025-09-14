@@ -44,7 +44,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Right-side stats — shown ONLY within the Home section */}
+        {/* Right-side stats */}
         <StatsRail
           years={3}
           projects={5}
@@ -87,6 +87,19 @@ export default function Home() {
           </span>
           .
         </p>
+
+        {/* === Download CV button moved here === */}
+        <a
+          href="/Pawan_Kumari_CV.pdf"
+          download
+          className="
+            mt-6 inline-block rounded-full px-6 py-2
+            bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600
+            text-white font-medium shadow-md hover:opacity-90 transition
+          "
+        >
+          Download CV
+        </a>
       </section>
 
       {/* SECTIONS */}

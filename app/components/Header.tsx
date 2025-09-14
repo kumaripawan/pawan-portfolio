@@ -6,16 +6,16 @@ export default function Header() {
   const gmailHref =
     "https://mail.google.com/mail/?view=cm&fs=1&to=Pawankumari08765@gmail.com&su=Portfolio%20Inquiry&body=Hi%20Pawan%2C%0A%0A";
 
-const handleHome = useCallback(() => {
-  setOpen(false);
-  if (typeof window !== "undefined") {
-    if (window.__lenisScrollTo) {
-      window.__lenisScrollTo(0);
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleHome = useCallback(() => {
+    setOpen(false);
+    if (typeof window !== "undefined") {
+      if (window.__lenisScrollTo) {
+        window.__lenisScrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
     }
-  }
-}, []);
+  }, []);
 
   // Gradient pill wrapper + dark inner
   const PillWrap = ({ children }: { children: React.ReactNode }) => (
@@ -23,6 +23,7 @@ const handleHome = useCallback(() => {
       {children}
     </span>
   );
+
   const pillInner =
     "rounded-full bg-black/70 px-3 py-1.5 text-sm text-gray-100 transition-colors hover:bg-black/50 focus:outline-none focus:ring-2 focus:ring-white/20";
 
@@ -35,7 +36,6 @@ const handleHome = useCallback(() => {
         </button>
 
         {/* Mobile menu button */}
-
         <PillWrap>
           <button
             className={`sm:hidden ${pillInner}`}
@@ -49,17 +49,8 @@ const handleHome = useCallback(() => {
         </PillWrap>
 
         {/* Desktop links */}
-
         <div className="hidden sm:flex flex-wrap items-center gap-3 justify-center">
-          <PillWrap>
-            <a href="/Pawan_Kumari_CV.pdf" download className={`${pillInner} font-medium`}>
-              Download CV
-            </a>
-          </PillWrap>
-
-          <PillWrap>
-            <a href="#home" className={pillInner}>Home</a>
-          </PillWrap>
+          <PillWrap><a href="#home" className={pillInner}>Home</a></PillWrap>
           <PillWrap><a href="#projects" className={pillInner}>Projects</a></PillWrap>
           <PillWrap><a href="#skills" className={pillInner}>Skills</a></PillWrap>
           <PillWrap><a href="#experience" className={pillInner}>Experience</a></PillWrap>
@@ -67,7 +58,6 @@ const handleHome = useCallback(() => {
           <PillWrap><a href="#volunteer" className={pillInner}>Volunteership</a></PillWrap>
           <PillWrap><a href="#internship" className={pillInner}>Internship</a></PillWrap>
           <PillWrap><a href="#certifications" className={pillInner}>Certifications</a></PillWrap>
-
           <PillWrap>
             <a
               href="https://www.linkedin.com/in/pawan-kumari-a45451306/"
@@ -89,7 +79,7 @@ const handleHome = useCallback(() => {
             </a>
           </PillWrap>
           <PillWrap>
-            <a href={gmailHref} target="_blank" rel="noopener noreferrer" className={`${pillInner} font-medium`}>
+            <a href={gmailHref} target="_blank" rel="noopener noreferrer" className={pillInner}>
               Contact
             </a>
           </PillWrap>
@@ -98,10 +88,12 @@ const handleHome = useCallback(() => {
 
       {/* Mobile dropdown */}
       {open && (
-        <div id="mobile-nav" className="sm:hidden border-t border-white/10 bg-black/60 backdrop-blur-md">
+        <div
+          id="mobile-nav"
+          className="sm:hidden border-t border-white/10 bg-black/60 backdrop-blur-md"
+        >
           <div className="container mx-auto px-4 py-3 flex flex-col gap-2">
             {[
-              <a key="cv" href="/Pawan_Kumari_CV.pdf" download>Download CV</a>,
               <button key="home" onClick={handleHome}>Home</button>,
               <a key="projects" href="#projects" onClick={() => setOpen(false)}>Projects</a>,
               <a key="skills" href="#skills" onClick={() => setOpen(false)}>Skills</a>,
