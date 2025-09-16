@@ -10,7 +10,7 @@ type Message = { sender: "user" | "bot"; text: string };
 export default function ChatBot() {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
