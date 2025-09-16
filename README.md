@@ -6,7 +6,9 @@
 
 ## 🚀 Live
 
-* **Production**: [*add your Vercel or GitHub Pages URL here*](https://pawan-portfolio-5l6vkly5q-pawan-kumaris-projects.vercel.app/)
+* **Production**: https://pawan-portfolio-alpha.vercel.app/#home
+* 
+* 
 
 ---
 
@@ -25,10 +27,18 @@
 
 ## 🧰 Tech Stack
 
-* **Next.js** (App Router) + **TypeScript**
-* **Tailwind CSS**
-* **Lenis** for smooth scrolling
-* **react-icons** for skill logos
+Tech Stack
+
+Framework: Next.js 13
+
+Language: TypeScript
+
+Styling: TailwindCSS
+
+Chatbot: react-draggable
+, re-resizable
+
+Deployment: Vercel
 
 ---
 
@@ -78,21 +88,6 @@ npm run build
 npx serve out
 ```
 
-> The project is configured for **static export** (`next.config.ts` → `output: "export"`). `npm run build` generates the `out/` directory ready for static hosting.
-
----
-
-## 🔧 Editing Content
-
-Update the data files under `app/data/`:
-
-* `projects.ts` — title, summary, tags, GitHub/demo links
-* `skills.ts` — grouped skills; icons auto‑map common names (JS/TS/React/Next/etc.)
-* `experience.ts` — roles, bullets, tags. Entries containing *"Volunteer"* or *"Intern"* automatically become `#volunteer` / `#internship` anchors
-* `education.ts` — degree, school, dates, details
-* `certifications.ts` — name, issuer, optional `date`/`issued`/`year`, `status`, `link`
-
-Hero text & photo live in `app/page.tsx` (see the glass **intro card**).
 
 ---
 
@@ -111,6 +106,13 @@ Example button:
 ```
 
 ---
+🤖 ChatBot
+
+Draggable & resizable UI
+
+Starts minimized by default
+
+Allows sending messages to a backend API (/api/chat)
 
 ## ☁️ Deploy
 
