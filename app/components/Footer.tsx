@@ -1,6 +1,7 @@
 export default function Footer() {
   return (
     <footer
+      id="contact" // 👈 important for scrolling
       className="
         mt-12 sm:mt-16
         border-t border-white/10
@@ -24,6 +25,17 @@ export default function Footer() {
           <span className="font-medium text-gray-200">
             Pawan Kumari
           </span>
+        </p>
+
+        {/* 👇 Contact details */}
+        <p className="mt-3 text-sm sm:text-base text-gray-300">
+          📧 Email:{" "}
+          <a
+            href="mailto:Pawankumari08765@gmail.com"
+            className="underline hover:text-white transition-colors"
+          >
+            Pawankumari08765@gmail.com
+          </a>
         </p>
       </div>
     </footer>

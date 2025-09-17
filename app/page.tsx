@@ -1,92 +1,111 @@
- "use client";
- import Image from "next/image";
- import Projects from "./components/Projects";
- import Skills from "./components/Skills";
- import Experience from "./components/Experience";
+"use client";
+import Image from "next/image";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
 import Edu from "./components/Edu";
-import Certs from "./components/certs";
- import StatsRail from "./components/StatsRail";
- import { Typewriter } from "react-simple-typewriter";
- import ChatBot from "./components/ChatBot";
+import StatsRail from "./components/StatsRail";
+import ChatBot from "./components/ChatBot";
+import React, { useState } from "react";
+import ContactModal from "./components/ContactModal";
+import Header from "./components/Header";  // ✅ added Header import
 
-  import React from "react";
- export default function Home() {
- return ( <main className="min-h-screen">
- {/* HERO */}
- <section
+export default function Home() {
+  const [openContact, setOpenContact] = useState(false); // ✅ modal state
 
-  id="home"
-  className="
-    container mx-auto px-4
-    py-12 sm:py-16 md:py-24 lg:py-32
-    grid grid-cols-1 md:grid-cols-3 items-center gap-8
-    scroll-mt-24
-  "
->
-<p className="text-base sm:text-lg md:text-xl text-gray-300 text-left leading-relaxed max-w-xl">
-  <Typewriter
-    words={[
-      "I’m a Software Developer with a strong background in Python, .NET/C#, and JavaScript.",
-      "I love turning ideas into responsive, scalable applications that make a real impact."
-    ]}
-    loop={false}
-    cursor
-    cursorStyle="|"
-    typeSpeed={50}
-    deleteSpeed={30}
-    delaySpeed={2000}
-  />
-</p>
+  return (
+    <>
+      {/* ✅ Header at the very top */}
+      <Header onContactClick={() => setOpenContact(true)} />
 
+      <main className="min-h-screen">
+        {/* HERO */}
+        <section
+          id="home"
+          className="
+            container mx-auto px-4
+            py-12 sm:py-16 md:py-24 lg:py-32
+            grid grid-cols-1 md:grid-cols-3 items-center gap-8
+            scroll-mt-24
+          "
+        >
+          <p className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed max-w-xl">
+            I’m a Software Developer with a strong background in Python, .NET/C#,
+            and JavaScript. I love turning ideas into responsive, scalable
+            applications that make a real impact.
+          </p>
 
+          {/* Middle: Headshot + Role */}
+          <div className="flex flex-col items-center text-center">
+            {/* Headshot */}
+            <div className="mb-6 rounded-full p-1 sm:p-1.5 lg:p-2 bg-gradient-to-br from-indigo-200 via-fuchsia-200 to-pink-200">
+              <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-52 md:w-52 lg:h-56 lg:w-56 rounded-full overflow-hidden bg-white shadow-xl ring-1 ring-black/5">
+                <Image
+                  src="/images/pawan-headshot.png"
+                  alt="Pawan Kumari headshot"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
 
-  {/* Middle: Headshot + Role */}
-  <div className="flex flex-col items-center text-center">
-    {/* Headshot */}
-    <div className="mb-6 rounded-full p-1 sm:p-1.5 lg:p-2 bg-gradient-to-br from-indigo-200 via-fuchsia-200 to-pink-200">
-      <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-52 md:w-52 lg:h-56 lg:w-56 rounded-full overflow-hidden bg-white shadow-xl ring-1 ring-black/5">
-        <Image
-          src="/images/pawan-headshot.png"
-          alt="Pawan Kumari headshot"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
-    </div>
+            <h1
+              className="
+                text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem]
+                font-extrabold tracking-tight text-center
+                whitespace-nowrap
+              "
+            >
+              SOFTWARE DEVELOPER
+            </h1>
 
-  <h1
-  className="
-    text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem]
-    font-extrabold tracking-tight text-center
-    whitespace-nowrap
-  "
->
-  SOFTWARE DEVELOPER
-</h1>
+            {/* Role + Tech pills */}
+            <div className="mt-3 flex flex-wrap gap-2 justify-center">
+              <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-xs sm:text-sm">
+                Python
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-xs sm:text-sm">
+                C#
+              </span>
+              <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-xs sm:text-sm">
+                JavaScript
+              </span>
+            </div>
+          </div>
 
+          {/* Right side stats only visible in home */}
+          <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-30">
+            <StatsRail years={3} projects={5} />
+          </div>
+        </section>
 
+        {/* SECTIONS */}
+        <section id="projects" className="scroll-mt-24">
+          <Projects />
+        </section>
 
-    {/* Role + Tech pills */}
-    <div className="mt-3 flex flex-wrap gap-2 justify-center">
-      <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-xs sm:text-sm">Python</span>
-      <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-xs sm:text-sm">C#</span>
-      <span className="rounded-full border border-indigo-200 bg-indigo-50 text-indigo-700 px-3 py-1 text-xs sm:text-sm">JavaScript</span>
-    </div>
-  </div>
+        <section id="skills" className="scroll-mt-24">
+          <Skills />
+        </section>
 
-  {/* Right side stats only visible in home */}
-  <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-30">
-          <StatsRail years={3} projects={5} />
-        </div>
-</section>
-{/* SECTIONS */}
-<Projects />
-<Skills />
-<Experience />
-<Edu />
-<Certs />
- <ChatBot />
-</main>
- );
+        <section id="experience" className="scroll-mt-24">
+          <Experience />
+        </section>
+
+        <section id="education" className="scroll-mt-24">
+          <Edu />
+        </section>
+
+        <section id="certifications" className="scroll-mt-24">
+
+        </section>
+
+        <ChatBot />
+
+        {/* ✅ Contact modal only shows when state is true */}
+        {openContact && <ContactModal onClose={() => setOpenContact(false)} />}
+      </main>
+    </>
+  );
 }

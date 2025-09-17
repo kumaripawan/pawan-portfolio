@@ -10,14 +10,12 @@ export const skills: Skills = {
 
   "Backend & Scripting": ["Python scripting", "ASP.NET (controllers, routing, views)"],
 
-  // Clear, honest AI story
-  "AI & Automation": [
-    "Prompt engineering (ChatGPT)",
-    "AI Automate (Zapier AI + GPT)",
-
-    "Website form integration",
-    "Customer communication workflows"
-  ],
+  "AI & Bots": [
+  "Chatbot Development (React + OpenAI API)",
+  "Prompt Engineering (ChatGPT)",
+  "Workflow Automation (Zapier AI + GPT)",
+  "Website form integration",
+],
 
   // Keep CMS separate so WordPress/Shopify are obvious
   "Web & CMS Platforms": ["WordPress"],

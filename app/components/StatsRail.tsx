@@ -1,5 +1,7 @@
 "use client";
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
+import { db } from "../firebaseConfig";
+import { ref, runTransaction } from "firebase/database";
 
 type Props = {
   years?: number;
@@ -9,31 +11,22 @@ type Props = {
 
 export default function StatsRail({ years = 3, projects = 5, className = "" }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [, setVisible] = useState(false);
   const [visitors, setVisitors] = useState<number | null>(null);
 
+  // ✅ Increment visitor count in Firebase
   useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) setVisible(true);
-      },
-      { threshold: 0.2 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    const visitorRef = ref(db, "visitors");
+
+    runTransaction(visitorRef, (currentValue) => {
+      return (currentValue || 0) + 1; // increment count
+    })
+      .then((result) => {
+        setVisitors(result.snapshot.val());
+      })
+      .catch((err) => console.error("Visitor counter error:", err));
   }, []);
 
- // Visitor count (local simulation for now)
-useEffect(() => {
-  const count = localStorage.getItem("visitor-count");
-  const newCount = count ? parseInt(count) + 1 : 1;
-  localStorage.setItem("visitor-count", newCount.toString());
-  setVisitors(newCount);
-}, []);
-
-
+  // ✅ Stats Item component
   const Item = useMemo(
     () =>
       function Item({
@@ -55,13 +48,16 @@ useEffect(() => {
               {value}
               {suffix}
             </div>
-            <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">{label}</div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">
+              {label}
+            </div>
           </div>
         );
       },
     []
   );
 
+  // ✅ UI
   return (
     <div
       ref={rootRef}
@@ -86,7 +82,7 @@ useEffect(() => {
       <Item label="Years of Experience" value={years} />
       <Item label="Completed Projects" value={projects} />
 
-      {/* Download CV button inside stats rail */}
+      {/* Download CV button */}
       <a
         href="/Pawan_Kumari_CV.pdf"
         download
