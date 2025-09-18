@@ -4,14 +4,15 @@ import { projects } from "../data/projects";
 
 export default function Projects() {
   return (
-    <section
-      id="projects"
-      className="
-        container mx-auto px-4
-        py-12 sm:py-16 md:py-24 lg:py-32
-        scroll-mt-28
-      "
-    >
+<section
+  id="projects"
+  className="
+    container mx-auto px-4
+    py-12 sm:py-16 md:py-24 lg:py-32
+    scroll-mt-24 md:scroll-mt-32
+  "
+>
+
       {/* Heading */}
       <h2
         className="

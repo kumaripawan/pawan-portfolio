@@ -3,10 +3,16 @@ import { FaGraduationCap } from "react-icons/fa";
 
 export default function Education() {
   return (
-    <section
-      id="education"
-      className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24 scroll-mt-20"
-    >
+ <section
+  id="education"
+  className="
+    container mx-auto px-4
+    py-12 sm:py-16 md:py-24 lg:py-32
+    scroll-mt-40 md:scroll-mt-32
+  "
+>
+
+
       {/* Heading */}
       <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center">
         <span className="bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 bg-clip-text text-transparent">

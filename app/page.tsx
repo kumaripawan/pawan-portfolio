@@ -18,17 +18,18 @@ export default function Home() {
       {/* ✅ Header at the very top */}
       <Header onContactClick={() => setOpenContact(true)} />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen pb-28">
+
         {/* HERO */}
-        <section
-          id="home"
-          className="
-            container mx-auto px-4
-            py-12 sm:py-16 md:py-24 lg:py-32
-            grid grid-cols-1 md:grid-cols-3 items-center gap-8
-            scroll-mt-24
-          "
-        >
+       <section
+  id="home"
+  className="
+    container mx-auto px-4
+    py-12 sm:py-16 md:py-24 lg:py-32
+    scroll-mt-24 md:scroll-mt-32
+  "
+>
+
           <p className="text-xs sm:text-sm md:text-base text-gray-300 leading-relaxed max-w-xl">
             I’m a Software Developer with a strong background in Python, .NET/C#,
             and JavaScript. I love turning ideas into responsive, scalable
@@ -74,10 +75,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right side stats only visible in home */}
-          <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 z-30">
-            <StatsRail years={3} projects={5} />
-          </div>
+        <div className="w-full flex justify-center mt-6 md:justify-end md:mt-0 md:w-1/3">
+  <StatsRail years={3} projects={5} />
+</div>
+
+
         </section>
 
         {/* SECTIONS */}
@@ -93,9 +95,16 @@ export default function Home() {
           <Experience />
         </section>
 
-        <section id="education" className="scroll-mt-24">
-          <Edu />
-        </section>
+    {/* Education Section */}
+<section id="education" className="scroll-mt-24">
+  <Edu />
+</section>
+
+{/* Experience Section */}
+<section id="experience" className="scroll-mt-24">
+  <Experience />
+</section>
+
 
         <section id="certifications" className="scroll-mt-24">
 

@@ -1,50 +1,23 @@
+/* ✅ Import Inter directly from Google Fonts (must be at very top) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ✅ Self-hosted Inter font */
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter/Inter-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter/Inter-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter/Inter-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/inter/Inter-ExtraBold.woff2") format("woff2");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ✅ Reset base font size to consistent */
+/* ✅ Base font family */
 html, body {
-  font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
   font-size: 16px; /* universal clean baseline */
+  -webkit-text-size-adjust: 100%; /* Prevent iOS/Edge auto-scaling */
+  background: transparent;
+  color: var(--foreground);
 }
 
-/* Responsive root font size */
+/* Responsive root font size (keep consistent) */
 @media (min-width: 768px) {
   html {
-    font-size: 16px; /* keep consistent, no scaling */
+    font-size: 16px;
   }
 }
 
@@ -59,16 +32,4 @@ html, body {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-}
-body {
-  -webkit-text-size-adjust: 100%; /* Prevent iOS/Edge auto-scaling */
-  text-size-adjust: 100%;
-}
-html {
-  font-size: 16px; /* Force consistent rem baseline */
 }

@@ -61,8 +61,11 @@ export default function StatsRail({ years = 3, projects = 5, className = "" }: P
   return (
     <div
       ref={rootRef}
-      className={`hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2
-                  z-40 flex-col gap-4 ${className}`}
+      className={`flex gap-4 justify-center w-full mt-6
+            md:mt-0 md:w-auto md:flex-col
+            md:fixed md:right-6 md:top-1/2 md:-translate-y-1/2
+            z-40 ${className}`}
+
     >
       {/* Visitors */}
       <div

@@ -1,3 +1,4 @@
+"use client";
 import { experience } from "../data/experience";
 
 type ExperienceItem = {
@@ -13,26 +14,25 @@ type ExperienceItem = {
 };
 
 export default function Experience() {
-  const items = experience as unknown as ExperienceItem[];
+  const items = experience as ExperienceItem[];
 
-  // Split jobs and volunteer/intern
+  // Split jobs vs volunteer/intern
   const jobs = items.filter(
     (job) =>
       !`${job.title} ${job.org} ${job.type}`.toLowerCase().includes("volunteer") &&
       !`${job.title} ${job.org} ${job.type}`.toLowerCase().includes("intern")
   );
+
   const volunteerInterns = items.filter((job) =>
-    `${job.title} ${job.org} ${job.type}`
-      .toLowerCase()
-      .match(/volunteer|intern/)
+    `${job.title} ${job.org} ${job.type}`.toLowerCase().match(/volunteer|intern/)
   );
 
   return (
     <>
-      {/* Jobs Section */}
+      {/* ✅ Main Experience Section (all combined) */}
       <section
         id="experience"
-        className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24 scroll-mt-20"
+        className="container mx-auto px-4 py-12 sm:py-16 md:py-24 lg:py-32 scroll-mt-40 md:scroll-mt-32"
       >
         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-center">
           <span className="bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
@@ -45,17 +45,22 @@ export default function Experience() {
         </p>
 
         <div className="mt-8 grid gap-6 sm:gap-8 md:grid-cols-2">
+          {/* Jobs */}
           {jobs.map((job) => (
+            <JobCard key={job.id ?? `${job.title}-${job.org}`} job={job} />
+          ))}
+          {/* Volunteers + Interns */}
+          {volunteerInterns.map((job) => (
             <JobCard key={job.id ?? `${job.title}-${job.org}`} job={job} />
           ))}
         </div>
       </section>
 
-      {/* Volunteer & Internship Section */}
+      {/* ✅ Combined Volunteership + Internship Section */}
       {volunteerInterns.length > 0 && (
         <section
           id="volunteer"
-          className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24 scroll-mt-20"
+          className="container mx-auto px-4 py-12 sm:py-16 md:py-24 lg:py-32 scroll-mt-40 md:scroll-mt-32"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center">
             <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">
@@ -72,9 +77,6 @@ export default function Experience() {
               <JobCard key={job.id ?? `${job.title}-${job.org}`} job={job} />
             ))}
           </div>
-
-          {/* Invisible Gradient Divider */}
-          <div className="my-16 h-[2px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </section>
       )}
     </>
@@ -85,12 +87,10 @@ export default function Experience() {
 function JobCard({ job }: { job: ExperienceItem }) {
   return (
     <div
-      className="
-        rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
-        p-4 sm:p-6 shadow-sm
-        hover:-translate-y-1 hover:shadow-lg hover:border-fuchsia-500/30
-        transition-all duration-300
-      "
+      className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm
+                 p-4 sm:p-6 shadow-sm
+                 hover:-translate-y-1 hover:shadow-lg hover:border-fuchsia-500/30
+                 transition-all duration-300"
     >
       <h3 className="text-sm sm:text-base md:text-lg font-semibold text-white">
         {job.title}{" "}
@@ -115,10 +115,8 @@ function JobCard({ job }: { job: ExperienceItem }) {
           {job.tags.map((t) => (
             <span
               key={t}
-              className="
-                rounded-full border border-white/10 bg-white/10
-                px-2 py-0.5 text-[10px] sm:text-xs text-gray-300
-              "
+              className="rounded-full border border-white/10 bg-white/10
+                         px-2 py-0.5 text-[10px] sm:text-xs text-gray-300"
             >
               {t}
             </span>
