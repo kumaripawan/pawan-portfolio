@@ -29,7 +29,7 @@ export default function Experience() {
 
   return (
     <>
-      {/* ✅ Main Experience Section (all combined) */}
+      {/* ✅ Main Experience Section (only jobs) */}
       <section
         id="experience"
         className="container mx-auto px-4 py-12 sm:py-16 md:py-24 lg:py-32 scroll-mt-40 md:scroll-mt-32"
@@ -45,18 +45,13 @@ export default function Experience() {
         </p>
 
         <div className="mt-8 grid gap-6 sm:gap-8 md:grid-cols-2">
-          {/* Jobs */}
           {jobs.map((job) => (
-            <JobCard key={job.id ?? `${job.title}-${job.org}`} job={job} />
-          ))}
-          {/* Volunteers + Interns */}
-          {volunteerInterns.map((job) => (
             <JobCard key={job.id ?? `${job.title}-${job.org}`} job={job} />
           ))}
         </div>
       </section>
 
-      {/* ✅ Combined Volunteership + Internship Section */}
+      {/* ✅ Dedicated Volunteership & Internship Section */}
       {volunteerInterns.length > 0 && (
         <section
           id="volunteer"
@@ -83,7 +78,7 @@ export default function Experience() {
   );
 }
 
-/* 🔹 Small reusable job card */
+/* 🔹 Reusable job card */
 function JobCard({ job }: { job: ExperienceItem }) {
   return (
     <div

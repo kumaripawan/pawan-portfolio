@@ -1,7 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, useMemo } from "react";
-import { db } from "../firebaseConfig";
-import { ref, runTransaction } from "firebase/database";
+import { useRef, useMemo } from "react";  // ✅ only keep what’s needed
 
 type Props = {
   years?: number;
@@ -11,20 +9,6 @@ type Props = {
 
 export default function StatsRail({ years = 3, projects = 5, className = "" }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const [visitors, setVisitors] = useState<number | null>(null);
-
-  // ✅ Increment visitor count in Firebase
-  useEffect(() => {
-    const visitorRef = ref(db, "visitors");
-
-    runTransaction(visitorRef, (currentValue) => {
-      return (currentValue || 0) + 1; // increment count
-    })
-      .then((result) => {
-        setVisitors(result.snapshot.val());
-      })
-      .catch((err) => console.error("Visitor counter error:", err));
-  }, []);
 
   // ✅ Stats Item component
   const Item = useMemo(
@@ -57,7 +41,6 @@ export default function StatsRail({ years = 3, projects = 5, className = "" }: P
     []
   );
 
-  // ✅ UI
   return (
     <div
       ref={rootRef}
@@ -65,23 +48,8 @@ export default function StatsRail({ years = 3, projects = 5, className = "" }: P
             md:mt-0 md:w-auto md:flex-col
             md:fixed md:right-6 md:top-1/2 md:-translate-y-1/2
             z-40 ${className}`}
-
     >
-      {/* Visitors */}
-      <div
-        className="rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm
-                   px-4 py-3 text-right shadow-sm"
-        aria-label="Visitors"
-      >
-        <div className="text-3xl font-extrabold leading-none text-indigo-400">
-          {visitors !== null ? visitors : "..."}
-        </div>
-        <div className="mt-1 text-xs uppercase tracking-wide text-gray-300">
-          Visitors
-        </div>
-      </div>
-
-      {/* Stats */}
+      {/* ✅ Only Experience + Projects now */}
       <Item label="Years of Experience" value={years} />
       <Item label="Completed Projects" value={projects} />
 
