@@ -1,0 +1,35 @@
+/* ✅ Import Inter directly from Google Fonts (must be at very top) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ✅ Base font family */
+html, body {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 16px; /* universal clean baseline */
+  -webkit-text-size-adjust: 100%; /* Prevent iOS/Edge auto-scaling */
+  background: transparent;
+  color: var(--foreground);
+}
+
+/* Responsive root font size (keep consistent) */
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Light/Dark CSS variables */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
